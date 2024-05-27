@@ -24,6 +24,12 @@ namespace API_Galkin
                     Title = "Руководство для пользования запросов",
                     Description = "Полное руководство для использования запросов находящихся в проекте"
                 });
+                c.SwaggerDoc("v3", new Microsoft.OpenApi.Models.OpenApiInfo
+                {
+                    Version = "v3",
+                    Title = "Руководство для пользования запросов",
+                    Description = "Полное руководство для использования запросов находящихся в проекте"
+                });
                 var filePath = Path.Combine(System.AppContext.BaseDirectory, "API_Galkin.xml");
                 c.IncludeXmlComments(filePath);
             });
@@ -38,7 +44,7 @@ namespace API_Galkin
             app.UseSwaggerUI(c => {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Запросы GET");
                 c.SwaggerEndpoint("/swagger/v2/swagger.json", "Запросы POST");
-                c.SwaggerEndpoint("/swagger/v2/swagger.json", "Запросы PUT");
+                c.SwaggerEndpoint("/swagger/v3/swagger.json", "Запросы PUT");
             });
         }
     }
