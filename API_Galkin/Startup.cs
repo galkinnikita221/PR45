@@ -51,7 +51,7 @@ namespace API_Galkin
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Запросы GET");
                 c.SwaggerEndpoint("/swagger/v2/swagger.json", "Запросы POST");
                 c.SwaggerEndpoint("/swagger/v3/swagger.json", "Запросы PUT");
-                c.SwaggerEndpoint("/swagger/v4/swagger.json", "Запросы UPDATE");
+                c.SwaggerEndpoint("/swagger/v4/swagger.json", "Запросы DELETE");
             });
         }
     }
