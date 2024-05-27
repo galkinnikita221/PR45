@@ -83,5 +83,44 @@ namespace API_Galkin.Controllers
                 return StatusCode(500);
             }
         }
+        /// <summary>
+        /// Метод изменения задачи
+        /// </summary>
+        /// <param name="task">Данные о задаче</param>
+        /// <returns>Статус выполнения задачи</returns>
+        /// <remarks>Данный метод изменяет задачу, находящуюся в базе данных</remarks>
+        [Route("Update")]
+        [HttpPut]
+        [ApiExplorerSettings(GroupName = "v3")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(404)]
+        [ProducesResponseType(500)]
+        public ActionResult Update([FromForm] Tasks task)
+        {
+            try
+            {
+                using (var taskContext = new TaskContext())
+                {
+                    var existingTask = taskContext.Tasks.FirstOrDefault(t => t.Id == task.Id);
+                    if (existingTask == null)
+                    {
+                        return StatusCode(404, "Задачи не существует");
+                    }
+
+                    existingTask.Name = task.Name;
+                    existingTask.Priority = task.Priority;
+                    existingTask.DateExecute = task.DateExecute;
+                    existingTask.Comment = task.Comment;
+                    existingTask.Done = task.Done;
+
+                    taskContext.SaveChanges();
+                    return StatusCode(200);
+                }
+            }
+            catch (Exception exp)
+            {
+                return StatusCode(500, exp.Message);
+            }
+        }
     }
 }

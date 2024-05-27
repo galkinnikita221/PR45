@@ -28,6 +28,14 @@
             <returns>Статус выполнения задачи</returns>
             <remarks>Данный метод добавляет задачу, находящуюся в базе данных</remarks>
         </member>
+        <member name="M:API_Galkin.Controllers.TasksController.Update(API_Galkin.Model.Tasks)">
+            <summary>
+            Метод изменения задачи
+            </summary>
+            <param name="task">Данные о задаче</param>
+            <returns>Статус выполнения задачи</returns>
+            <remarks>Данный метод изменяет задачу, находящуюся в базе данных</remarks>
+        </member>
         <member name="M:API_Galkin.Controllers.UsersController.SingIn(System.String,System.String)">
             <summary>
             Авторизация пользователя
