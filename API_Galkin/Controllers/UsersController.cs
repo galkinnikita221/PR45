@@ -1,6 +1,7 @@
 ﻿using API_Galkin.Context;
 using API_Galkin.Model;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Linq;
 
@@ -23,20 +24,53 @@ namespace API_Galkin.Controllers
         [HttpPost("SignIn")]
         public ActionResult SingIn([FromForm] string Login, [FromForm] string Password)
         {
+            if (Login == null || Password == null)
+                return StatusCode(403);
+            try
+            {
+                Users User = new UsersContext().Users.Where(x => x.Login == Login && x.Password == Password).First();
+                return Json(User);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500);
+            }
+        }
+
+        /// <summary>
+        /// Регистрация пользователя
+        /// </summary>
+        /// <param name="Login">Логин</param>
+        /// <param name="Password">Пароль</param>
+        /// <returns>Данный метод преднозначен для авторизации пользователя на сайте</returns>
+        /// <response code="200">Пользователь успешно зарегестрирован</response>
+        /// <response code="403">Ошибка запроса, данные не указаны</response>
+        /// <response code="500">При выполнении запроса возникли ошибки</response>
+        [HttpPost("Register")]
+        public ActionResult Register([FromForm] string Login, [FromForm] string Password)
+        {
             if (string.IsNullOrEmpty(Login) || string.IsNullOrEmpty(Password))
-                return StatusCode(403, "Необходимо указать логин и пароль");
+                return StatusCode(400, "Логин и пароль неверны!");
 
             try
             {
                 using (var context = new UsersContext())
                 {
-                    Users user = context.Users.FirstOrDefault(x => x.Login == Login && x.Password == Password);
-                    if (user == null)
+                    if (context.Users.Any(x => x.Login == Login))
                     {
-                        return StatusCode(403, "Неверные учетные данные");
+                        return StatusCode(400, "Логин уже используется");
                     }
 
-                    return Ok(user);
+                    Users newUser = new Users
+                    {
+                        Login = Login,
+                        Password = Password
+                    };
+
+                    context.Users.Add(newUser);
+                    context.SaveChanges();
+
+                    return Ok(newUser);
                 }
             }
             catch (Exception ex)
