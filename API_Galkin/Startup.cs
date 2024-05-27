@@ -38,6 +38,7 @@ namespace API_Galkin
             app.UseSwaggerUI(c => {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Запросы GET");
                 c.SwaggerEndpoint("/swagger/v2/swagger.json", "Запросы POST");
+                c.SwaggerEndpoint("/swagger/v2/swagger.json", "Запросы PUT");
             });
         }
     }

@@ -19,6 +19,7 @@ namespace API_Galkin.Controllers
         /// <param name="Password">Пароль</param>
         /// <returns>Данный метод преднозначен для авторизации пользователя на сайте</returns>
         /// <response code="200">Пользователь успешно авторизован</response>
+        /// <response code="401">Ошибка запроса, логин или пароль неверны!</response>
         /// <response code="403">Ошибка запроса, данные не указаны</response>
         /// <response code="500">При выполнении запроса возникли ошибки</response>
         [HttpPost("SignIn")]
@@ -33,7 +34,7 @@ namespace API_Galkin.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500);
+                return StatusCode(500, ex.Message);
             }
         }
 
@@ -44,6 +45,7 @@ namespace API_Galkin.Controllers
         /// <param name="Password">Пароль</param>
         /// <returns>Данный метод преднозначен для авторизации пользователя на сайте</returns>
         /// <response code="200">Пользователь успешно зарегестрирован</response>
+        /// /// /// <response code="401">Ошибка запроса, логин или пароль неверны!</response>
         /// <response code="403">Ошибка запроса, данные не указаны</response>
         /// <response code="500">При выполнении запроса возникли ошибки</response>
         [HttpPost("Register")]
