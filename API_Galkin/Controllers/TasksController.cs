@@ -158,5 +158,32 @@ namespace API_Galkin.Controllers
             }
         }
 
+        /// <summary>
+        /// Метод удаления всей таблицы
+        /// </summary>
+        /// <param name="id">ID задачи</param>
+        /// <returns>Статус выполнения задачи</returns>
+        /// <remarks>Данный метод удаляет задачу, находящуюся в базе данных</remarks>
+        [Route("DeleteAll")]
+        [HttpDelete]
+        [ApiExplorerSettings(GroupName = "v4")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(404)]
+        [ProducesResponseType(500)]
+        public ActionResult DeleteAll()
+        {
+            try
+            {
+                using (var taskContext = new TaskContext())
+                {
+                    taskContext.Database.ExecuteSqlRaw("TRUNCATE TABLE Tasks;");
+                    return Ok("Все задачи выполнены успешно.");
+                }
+            }
+            catch (Exception exp)
+            {
+                return StatusCode(500, exp.Message);
+            }
+        }
     }
 }
