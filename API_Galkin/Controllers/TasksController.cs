@@ -1,6 +1,8 @@
 ﻿using API_Galkin.Context;
 using API_Galkin.Model;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -101,7 +103,7 @@ namespace API_Galkin.Controllers
             {
                 using (var taskContext = new TaskContext())
                 {
-                    var existingTask = taskContext.Tasks.FirstOrDefault(t => t.Id == task.Id);
+                    var existingTask = taskContext.Tasks.FirstOrDefault(x => x.Id == task.Id);
                     if (existingTask == null)
                     {
                         return StatusCode(404, "Задачи не существует");
@@ -122,5 +124,39 @@ namespace API_Galkin.Controllers
                 return StatusCode(500, exp.Message);
             }
         }
+        /// <summary>
+        /// Метод удаления задачи
+        /// </summary>
+        /// <param name="id">ID задачи</param>
+        /// <returns>Статус выполнения задачи</returns>
+        /// <remarks>Данный метод удаляет задачу, находящуюся в базе данных</remarks>
+        [Route("Delete/{id}")]
+        [HttpDelete]
+        [ApiExplorerSettings(GroupName = "v4")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(404)]
+        [ProducesResponseType(500)]
+        public ActionResult Delete(int id)
+        {
+            try
+            {
+                using (var taskContext = new TaskContext())
+                {
+                    var existingTask = taskContext.Tasks.FirstOrDefault(x => x.Id == id);
+                    if (existingTask == null)
+                    {
+                        return NotFound("Задачи не существует, проверьте запрос и повторите попытку.");
+                    }
+                    taskContext.Tasks.Remove(existingTask);
+                    taskContext.SaveChanges();
+                    return Ok("Успешное удаление.");
+                }
+            }
+            catch (Exception exp)
+            {
+                return StatusCode(500, exp.Message);
+            }
+        }
+
     }
 }

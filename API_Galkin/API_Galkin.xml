@@ -36,6 +36,22 @@
             <returns>Статус выполнения задачи</returns>
             <remarks>Данный метод изменяет задачу, находящуюся в базе данных</remarks>
         </member>
+        <member name="M:API_Galkin.Controllers.TasksController.Delete(System.Int32)">
+            <summary>
+            Метод удаления задачи
+            </summary>
+            <param name="id">ID задачи</param>
+            <returns>Статус выполнения задачи</returns>
+            <remarks>Данный метод удаляет задачу, находящуюся в базе данных</remarks>
+        </member>
+        <member name="M:API_Galkin.Controllers.TasksController.DeleteAll">
+            <summary>
+            Метод удаления всей таблицы
+            </summary>
+            <param name="id">ID задачи</param>
+            <returns>Статус выполнения задачи</returns>
+            <remarks>Данный метод удаляет задачу, находящуюся в базе данных</remarks>
+        </member>
         <member name="M:API_Galkin.Controllers.UsersController.SingIn(System.String,System.String)">
             <summary>
             Авторизация пользователя
