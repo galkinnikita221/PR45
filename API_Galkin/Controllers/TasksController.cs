@@ -56,5 +56,32 @@ namespace API_Galkin.Controllers
                 return StatusCode(500);
             }
         }
+
+        /// <summary>
+        /// Метод добавления задачи
+        /// </summary>
+        /// <param name="task">Данные о задаче</param>
+        /// <returns>Статус выполнения задачи</returns>
+        /// <remarks>Данный метод добавляет задачу, находящуюся в базе данных</remarks>
+        [Route("Add")]
+        [HttpPut]
+        [ApiExplorerSettings(GroupName = "v3")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(500)]
+
+        public ActionResult Add([FromForm]Tasks task)
+        {
+            try
+            {
+                TaskContext taskContext = new TaskContext();
+                taskContext.Tasks.Add(task);
+                taskContext.SaveChanges();
+                return StatusCode(200);
+            }
+            catch (Exception exp)
+            {
+                return StatusCode(500);
+            }
+        }
     }
 }
