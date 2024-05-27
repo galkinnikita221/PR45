@@ -2,10 +2,11 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>C:\Users\Student-a202.PERMAVIAT\Desktop\API_Galkin\API_Galkin\API_Galkin.xml</DocumentationFile>
+    <DocumentationFile>C:\Users\galki\OneDrive\Рабочий стол\API_Galkin\API_Galkin\API_Galkin.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

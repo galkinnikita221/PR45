@@ -6,7 +6,7 @@ namespace API_Galkin.Context
 {
     public class TaskContext : DbContext
     {
-        public DBSet<Tasks> Tasks { get; set; }
+        public DbSet<Tasks> Tasks { get; set; }
 
         public TaskContext()
         {
@@ -16,6 +16,7 @@ namespace API_Galkin.Context
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) =>
             optionsBuilder.UseMySql("server=127.0.0.1;" +
+                "port=3306;" +
                 "uid=root;" +
                 "pwd=;" +
                 "database=TaskManager",

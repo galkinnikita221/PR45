@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>API_Galkin</name>
+    </assembly>
+    <members>
+        <member name="M:API_Galkin.Controllers.TasksController.List">
+            <summary>
+            Получение списка задач
+            </summary>
+            <remarks>Данный метод получает список задач, находящийся в базе данных</remarks>
+            <response code="200">Список успешно получен</response>
+            <response code="500">При выполнении запроса возникли ошибки</response>
+        </member>
+        <member name="M:API_Galkin.Controllers.TasksController.Item(System.Int32)">
+            <summary>
+            Получение задачи
+            </summary>
+            <remarks>Данный метод получает задачу, находящуюся в базе данных</remarks>
+            <response code="200">Задача успешно получена</response>
+            <response code="500">При выполнении запроса возникли ошибки</response>
+        </member>
+    </members>
+</doc>
