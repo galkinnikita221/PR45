@@ -20,5 +20,16 @@
             <response code="200">Задача успешно получена</response>
             <response code="500">При выполнении запроса возникли ошибки</response>
         </member>
+        <member name="M:API_Galkin.Controllers.UsersController.SingIn(System.String,System.String)">
+            <summary>
+            Авторизация пользователя
+            </summary>
+            <param name="Login">Логин</param>
+            <param name="Password">Пароль</param>
+            <returns>Данный метод преднозначен для авторизации пользователя на сайте</returns>
+            <response code="200">Пользователь успешно авторизован</response>
+            <response code="403">Ошибка запроса, данные не указаны</response>
+            <response code="500">При выполнении запроса возникли ошибки</response>
+        </member>
     </members>
 </doc>

@@ -21,7 +21,7 @@ namespace API_Galkin
                 c.SwaggerDoc("v2", new Microsoft.OpenApi.Models.OpenApiInfo
                 {
                     Version = "v2",
-                    Title = "–уководство дл€ использовани€ запросов",
+                    Title = "–уководство дл€ пользовани€ запросов",
                     Description = "ѕолное руководство дл€ использовани€ запросов наход€щихс€ в проекте"
                 });
                 var filePath = Path.Combine(System.AppContext.BaseDirectory, "API_Galkin.xml");
